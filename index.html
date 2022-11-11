@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+   <meta charset="utf-8">
+   <title>U-Lime</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+   <link rel="icon" href="assets/media/LogoV1.png">
+   <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+   <div class="container">
+      <img src="assets/media/FullH.png">
+      <p>Calculate the amount of limestone that you need to apply to correct the pH of your tropical soil.</p>
+      <div class="progress-bar">
+         <div class="step">
+            <p>
+
+            </p>
+            <div class="bullet">
+               <span>1</span>
+            </div>
+            <div class="check fas fa-check"></div>
+         </div>
+         <div class="step">
+            <p>
+
+            </p>
+            <div class="bullet">
+               <span>2</span>
+            </div>
+            <div class="check fas fa-check"></div>
+         </div>
+         <div class="step">
+            <p>
+
+            </p>
+            <div class="bullet">
+               <span>3</span>
+            </div>
+            <div class="check fas fa-check"></div>
+         </div>
+         <div class="step">
+            <p>
+
+            </p>
+            <div class="bullet">
+               <span>4</span>
+            </div>
+            <div class="check fas fa-check"></div>
+         </div>
+      </div>
+      <div class="form-outer">
+         <form action="#">
+            <div class="page slide-page">
+               <div class="field">
+                  <div class="label">
+                     K (mg/dm<sup>3</sup>)
+                  </div>
+                  <input type="number" id="k">
+               </div>
+               <div class="field">
+                  <div class="label">
+                     Ca<sup>2+</sup> (mg/dm<sup>3</sup>)
+                  </div>
+                  <input type="number" id="ca">
+               </div>
+               <div class="field">
+                  <div class="label">
+                     Mg<sup>2+</sup> (mg/dm<sup>3</sup>)
+                  </div>
+                  <input type="number" id="mg2">
+               </div>
+               <div class="field">
+                  <button class="firstNext next">Next</button>
+               </div>
+            </div>
+            <div class="page">
+
+               <div class="field">
+                  <div class="label">
+                     Al<sup>3+</sup> (mg/dm<sup>3</sup>)
+                  </div>
+                  <input type="number" id="al">
+               </div>
+               <div class="field">
+                  <div class="label custom-between">
+                     <span class="">Y = f (soil buffer capacity)</span>
+                     <i class="fa fa-info-circle"
+                        title="High clay > 35 % Y = 3 &#013;Medium clay 15 - 35 % Y = 2 &#013;Low clay < 15 % Y=1"></i>
+                  </div>
+                  <input type="number" id="y">
+               </div>
+               <div class="field">
+                  <div class="label">
+                     depth (in Cm)
+                  </div>
+                  <input type="number" id="dpth">
+               </div>
+               <div class="field btns">
+                  <button class="prev-1 prev">Previous</button>
+                  <button class="next-1 next">Next</button>
+               </div>
+            </div>
+            <div class="page">
+
+               <div class="field">
+                  <div class="label">
+                     H + Al (cmol<sub>c</sub>/dm<sup>3</sup>)
+                  </div>
+                  <input type="number" id="hal">
+               </div>
+               <div class="field">
+                  <div class="label">
+                     RPN (Real Power of Neutralization in %)
+                  </div>
+                  <input type="number" id="rpm">
+               </div>
+               <div class="field">
+                  <div class="label">
+                     Surface (in %)
+                  </div>
+                  <input type="number" id="surface">
+               </div>
+               <div class="field btns">
+                  <button class="prev-2 prev">Previous</button>
+                  <button class="next-2 next">Next</button>
+               </div>
+            </div>
+            <div class="page">
+
+               <div class="field">
+                  <div class="label">
+                     Ve (Desired V base saturation in %)
+                  </div>
+                  <input type="number" id="ve">
+               </div>
+               <div class="field">
+                  <div class="label custom-between">
+                     <span>X = f (crop demand for Ca<sup>2+</sup> + Mg<sup>2+</sup>)</span>
+                     <i class="fa fa-info-circle"
+                        title="High (tomato, coffee, sugar cane, fruit trees) X = 3 cmolc /dm3 &#013;Medium (cereals and legumes) X = 2 &#013;Low (eucalypt and pastures) X = 1"></i>
+                  </div>
+                  <input type="number" id="x">
+               </div>
+               <div class="field btns">
+                  <button class="prev-3 prev">Previous</button>
+                  <button class="submit" id="Calculate">Calculate</button>
+                  <div id="myModal" class="modal">
+                     <div class="modal-content">
+                        <img src="assets/media/FullH.png">
+                        <span class="close">&times;</span>
+                        <p>LQ1 and LQ2 are the quantities of limestone that you need to apply, However, you need to
+                           choose
+                           only one of them. To choose the adequate value, you need to take into consideration, the
+                           amount
+                           of (Ca<sup>2+</sup> + Mg<sup>2+</sup>), the amount of (H + AL), and the price of limestone in
+                           your local market.</p>
+                        <span class="modal-span">N.B: a negative value means that no need to apply limestone</span>
+                        <div id="result">
+                           <p class="title"><span style="color: red;"> LQ1 : </span><span class="title" id="LQ1"></span>
+                           </p>
+
+                           <p class="title"><span style="color: red;"> LQ2 : </span><span class="title" id="LQ2"></span>
+                           </p>
+
+                        </div>
+                        <span class="modal-span">Disclaimer: This calculator is provided as a free service by <b>Reda Mokere</b> and <b>El Mehdi El Garda</b>. Calculator accuracy is not guaranteed. User assumes all risks and liabilities arising from its use.</span>
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+   <script src="assets/javascript.js"></script>
+</body>
+
+</html>
